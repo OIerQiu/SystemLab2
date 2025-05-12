@@ -1,0 +1,27 @@
+Task0：COW
+对于fork，xv6系统原本的做法是直接把page全部复制一份给儿子，而这个任务要求我们实现copy_on_write，即在修改的时候才复制。
+思路比较简单，即在fork的时候对原来的page删除写的权限，并且加入cow的标识。这样每次写的时候便会触发trap，之后只要在内存中处理相应的情况就行。
+在kinit的时候获取页的数量以及初始化每个页的引用计数，在kalloc和uvmcopy的时候增加计数，在kfree的时候减少计数，在计数减少到0时再执行真正的kfree即可。
+usertests里的copyout卡了好久，里面有个最后翻了下函数里的测试信息，发现里面有个0LL的神秘地址，进行特判就行。
+
+最后附上make grade的结果（从Test running cowtest开始，为控制台中复制的）
+$ make qemu-gdb
+(4.6s) 
+== Test   simple == 
+  simple: OK 
+== Test   three == 
+  three: OK 
+== Test   file == 
+  file: OK 
+== Test usertests == 
+$ make qemu-gdb
+(34.6s) 
+== Test   usertests: copyin == 
+  usertests: copyin: OK 
+== Test   usertests: copyout == 
+  usertests: copyout: OK 
+== Test   usertests: all tests == 
+  usertests: all tests: OK 
+== Test lab-cow-report.txt == 
+lab-cow-report.txt: OK 
+Score: 114/114

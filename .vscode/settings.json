@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "array": "c",
+        "chrono": "c",
+        "cmath": "c",
+        "condition_variable": "c",
+        "deque": "c",
+        "string": "c",
+        "unordered_map": "c",
+        "vector": "c",
+        "exception": "c",
+        "functional": "c",
+        "string_view": "c",
+        "memory": "c",
+        "random": "c",
+        "initializer_list": "c",
+        "numeric": "c",
+        "ostream": "c",
+        "streambuf": "c",
+        "system_error": "c"
+    }
+}

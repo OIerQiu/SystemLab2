@@ -123,7 +123,7 @@ char junk2[4096];
 char buf[4096];
 char junk3[4096];
 
-// test whether copyout() simulates COW faults.
+// test whether copyout() simulates COW faults. 
 void
 filetest()
 {
